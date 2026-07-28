@@ -1,0 +1,23 @@
+from math import prod
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        n = len(nums)
+        res = [1] * n
+
+        prefix = 1
+        for i in range(n):
+            res[i] *= prefix
+            prefix *= nums[i]
+        
+        postfix = 1
+        for i in range(n - 1, -1, -1):
+            res[i] *= postfix
+            postfix *= nums[i]
+        
+        return res
+
+        # res = []
+        # for i in range(len(nums)):
+        #     res.append(prod(nums[i+1:] + nums[:i]))
+
+        # return res
